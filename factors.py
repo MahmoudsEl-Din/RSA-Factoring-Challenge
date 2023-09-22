@@ -1,6 +1,5 @@
 import sys
 
-# Function to factorize a number n
 def factorize(n):
     factors = []
     for i in range(2, int(n ** 0.5) + 1):
@@ -11,7 +10,6 @@ def factorize(n):
         factors.append(n)
     return factors
 
-# Main function
 def main():
     if len(sys.argv) != 2:
         print("Usage: factors <file>")
@@ -23,7 +21,11 @@ def main():
             for line in file:
                 n = int(line.strip())
                 factors = factorize(n)
-                print(f"{n}={'*'.join(map(str, factors))}")
+                p = factors.pop(0)
+                q = 1
+                for factor in factors:
+                    q *= factor
+                print(f"{n}={p}*{q}")
     except FileNotFoundError:
         print(f"File '{filename}' not found.")
     except ValueError:
